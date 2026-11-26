@@ -1,0 +1,78 @@
+<!-- The page for one run of this project: HTML, with the site's views placed by tag (docs/system/pages).
+     It serves every variant, so the words say what to look at and the numbers come from the run. -->
+
+<p class="nb-lede">This is one run of the Palisades fire on Rothermel's spread equations, from the morning of 7 January 2025 to 12 January. Drag the bar under the map to move through the five days, or press play. Everything on this page follows the moment the bar shows.</p>
+
+<div class="nb-counters">
+  <esim-counter series="fire.burned_acres" label="acres burned in the model"></esim-counter>
+  <esim-counter series="obs.acres" label="acres inside the mapped edge"></esim-counter>
+  <esim-counter series="fit.sorensen" label="overlap with the mapped area"></esim-counter>
+  <esim-counter series="fire.wind_m_s" label="wind, metres a second"></esim-counter>
+  <esim-counter series="fire.gust_m_s" label="gusts, metres a second"></esim-counter>
+</div>
+<esim-timeline></esim-timeline>
+
+<esim-tabs>
+
+<section title="The fire">
+<p>This model spreads fire by Rothermel's equations, the ones behind the fire-behaviour tools agencies use: a rate of spread for each cell from its fuel, its slope, the wind and the dryness of the fuel.</p>
+<esim-map field="fire_arrival_h"></esim-map>
+<div class="nb-cols">
+  <div><h3>The fuel model assigned to each cell</h3><esim-map field="fire_fuel_class"></esim-map></div>
+  <div><esim-chart series="fire.burned_acres" title="acres burned"></esim-chart><esim-chart series="fire.head_ros_shrub_m_min" title="rate of spread at the head in shrub, metres a minute"></esim-chart></div>
+</div>
+</section>
+
+<section title="Against the mapped fire">
+<p>Fire agencies mapped the edge of the fire about once a day. At each mapping the model's burned area is compared with the mapped one, and the structures the model's fire reached with those inspectors recorded destroyed.</p>
+<div class="nb-counters">
+  <esim-counter series="sim.acres" label="acres burned in the model"></esim-counter>
+  <esim-counter series="obs.acres" label="acres inside the mapped edge"></esim-counter>
+  <esim-counter series="fit.sorensen" label="overlap with the mapped area"></esim-counter>
+  <esim-counter series="fit.structures_recall" label="of the destroyed structures, share reached"></esim-counter>
+  <esim-counter series="fit.structures_precision" label="of the reached structures, share destroyed"></esim-counter>
+</div>
+<div class="nb-cols">
+  <div><h3>Inside the mapped edge</h3><esim-map field="obs_perimeter"></esim-map></div>
+  <div><h3>Where satellites had seen heat</h3><esim-map field="obs_hotspots"></esim-map></div>
+  <div><h3>Structures recorded destroyed</h3><esim-map field="obs_destroyed"></esim-map></div>
+</div>
+<div class="nb-cols">
+  <esim-chart series="sim.acres" title="model, acres"></esim-chart>
+  <esim-chart series="obs.acres" title="mapped, acres"></esim-chart>
+  <esim-chart series="fit.sorensen" title="overlap with the mapped area"></esim-chart>
+</div>
+<p class="nb-note">On the reanalysis wind the model is about eight times too slow through the first 27 hours and ends the fourth day near the mapped size. The gusts variant is faster early and overruns by the end.</p>
+</section>
+
+<section title="Weather">
+<p>The weather is one point of the ERA5 reanalysis, hour by hour, for the whole window.</p>
+<div class="nb-cols">
+  <esim-chart series="fire.wind_m_s" title="wind speed, metres a second"></esim-chart>
+  <esim-chart series="fire.gust_m_s" title="gusts, metres a second"></esim-chart>
+  <esim-chart series="fire.wind_dir_deg" title="wind direction, degrees"></esim-chart>
+  <esim-chart series="fire.rh_pct" title="relative humidity, percent"></esim-chart>
+  <esim-chart series="fire.t2m_c" title="air temperature, degrees C"></esim-chart>
+  <esim-chart series="fire.dead_moisture_pct" title="moisture of dead fuel, percent"></esim-chart>
+</div>
+</section>
+
+<section title="How far to trust it">
+<ul>
+    <li>The fuel table is recalled from memory of Scott and Burgan (2005) and has not been checked against it.</li>
+    <li>The wind is one point of a coarse reanalysis and does not bend around the terrain.</li>
+    <li>Nobody fights the fire unless the variant says so.</li>
+    <li>This model writes no elevation frame, so its run page has a flat map where the other fire pages have a relief.</li>
+    <li>The first mapped perimeter is a hand-drawn triangle.</li>
+  </ul>
+<p>The <a href="/anselm/palisades-2025">project page</a> gives the account and the sources.</p>
+<h3>How the parts are connected</h3>
+<esim-wiring></esim-wiring>
+</section>
+
+<section title="Everything recorded">
+<p>Every part of the model with the panel it describes for itself: its own account of what it does and leaves out, its maps, its counters and its charts.</p>
+<esim-modules></esim-modules>
+</section>
+
+</esim-tabs>

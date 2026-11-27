@@ -1,0 +1,116 @@
+<!-- The page for one run of this project: HTML, with the site's views placed by tag (docs/system/pages).
+     It serves every variant, so the words say what to look at and the numbers come from the run. -->
+
+<p class="nb-lede">This is the Palisades fire of January 2025 run as five separate parts: the relief, the hour's air, the dryness of the fuel, the fire, and animals that flee it. Each part is a module of its own and they meet only in shared maps. The fire's numbers are the same as when one module did everything; what is new is that other parts can now join. Drag the bar under the picture to move through the five days.</p>
+
+<esim-scene></esim-scene>
+<esim-timeline></esim-timeline>
+
+<div class="nb-counters">
+  <esim-counter series="fire.burned_acres" label="acres burned in the model"></esim-counter>
+  <esim-counter series="obs.acres" label="acres inside the mapped edge"></esim-counter>
+  <esim-counter series="fit.sorensen" label="overlap with the mapped area"></esim-counter>
+  <esim-counter series="fire.built_cells_burned" label="built cells burned"></esim-counter>
+  <esim-counter series="fire.wind_m_s" label="wind, metres a second"></esim-counter>
+</div>
+
+<esim-tabs>
+
+<section title="The fire">
+<p>The model divides the ground into 30-metre cells. Each cell has a height, a land cover and, where there are any, buildings. A burning cell heats its neighbours, more strongly downwind and uphill, and a neighbour catches when it has taken enough heat. Embers can start new fires ahead of the front.</p>
+<div class="nb-cols">
+  <div><h3>Hours after ignition that the fire arrived</h3><esim-map field="fire_arrival_h"></esim-map></div>
+  <div><h3>What the model takes each cell to be made of</h3><esim-map field="fire_fuel_kind"></esim-map></div>
+</div>
+<div class="nb-cols">
+  <esim-chart series="fire.burned_acres" title="acres burned"></esim-chart>
+  <esim-chart series="fire.ignited_cells_hour" title="cells catching each hour"></esim-chart>
+  <esim-chart series="fire.spots_hour" title="new fires from embers each hour"></esim-chart>
+</div>
+</section>
+
+<section title="How the parts connect">
+<p>Each box is a module. An arrow is something one module writes and another reads. The relief owns the grid of cells; the weather lays each hour's air on it; the fuel moisture module turns that air into how dry the dead fuel is; the fire reads all three; the animals read where the fire has burned.</p>
+<esim-wiring></esim-wiring>
+<p class="nb-note">Land cover, buildings and roads are still loaded inside the fire module. Buildings are the hard case: a list of thousands of footprints with neighbours is not a map, and the engine has no shared form for such a list yet.</p>
+</section>
+
+<section title="Animals">
+<p>A placeholder population, declared as one: twenty animals on every square kilometre of grass, shrub and tree at the start. Each hour the animals on newly burned ground move to the nearest unburned cell, a tenth of them die there, and those with no unburned ground within three kilometres die. Every animal is accounted for.</p>
+<div class="nb-counters">
+  <esim-counter series="fauna.alive" label="animals alive"></esim-counter>
+  <esim-counter series="fauna.killed_by_fire" label="killed by the fire"></esim-counter>
+  <esim-counter series="fauna.displaced" label="moves made to escape"></esim-counter>
+</div>
+<div class="nb-cols">
+  <div><h3>Animals per square kilometre</h3><esim-map field="animals_density_km2"></esim-map></div>
+  <div><esim-chart series="fauna.alive" title="animals alive"></esim-chart><esim-chart series="fauna.fleeing_hour" title="animals fleeing each hour"></esim-chart></div>
+</div>
+<p class="nb-note">This says nothing about any real species. An animal here moves only once its own cell has burned and goes to the nearest unburned cell, a road or a town included. It is in the run to show that a second module can react to the fire without the fire knowing it exists.</p>
+</section>
+
+<section title="Against the mapped fire">
+<p>Fire agencies mapped the edge of the fire about once a day. At each mapping the model's burned area is compared with the mapped one. Satellites give a second, coarser record between mappings.</p>
+<div class="nb-counters">
+  <esim-counter series="sim.acres" label="acres burned in the model"></esim-counter>
+  <esim-counter series="obs.acres" label="acres inside the mapped edge"></esim-counter>
+  <esim-counter series="fit.sorensen" label="overlap with the mapped area"></esim-counter>
+  <esim-counter series="seen.sorensen" label="overlap with what satellites saw"></esim-counter>
+</div>
+<div class="nb-cols">
+  <div><h3>Inside the mapped edge</h3><esim-map field="obs_perimeter"></esim-map></div>
+  <div><h3>Where satellites had seen heat</h3><esim-map field="obs_hotspots"></esim-map></div>
+  <div><h3>Where the model had burned</h3><esim-map field="fire_arrival_h"></esim-map></div>
+</div>
+<div class="nb-cols">
+  <esim-chart series="sim.acres" title="model, acres"></esim-chart>
+  <esim-chart series="obs.acres" title="mapped, acres"></esim-chart>
+  <esim-chart series="fit.sorensen" title="overlap with the mapped area"></esim-chart>
+</div>
+<p class="nb-note">No variant matches the first night and then stops. The settings that keep pace with the first day overrun the record on the second, because the model has no way for a fire to go out.</p>
+</section>
+
+<section title="Buildings">
+<p>State inspectors recorded what happened to each structure after the fire. The model's fire is scored against those inspections: of the structures recorded destroyed, how many did the model's fire reach, and of those it reached, how many were in fact destroyed.</p>
+<div class="nb-counters">
+  <esim-counter series="sim.structures_reached" label="inspected structures the model's fire reached"></esim-counter>
+  <esim-counter series="obs.structures_destroyed" label="structures recorded destroyed" at="end"></esim-counter>
+  <esim-counter series="fit.structures_recall" label="of the destroyed, share reached"></esim-counter>
+  <esim-counter series="fit.structures_precision" label="of the reached, share destroyed"></esim-counter>
+</div>
+<div class="nb-cols">
+  <div><h3>Structures recorded destroyed</h3><esim-map field="obs_destroyed"></esim-map></div>
+  <div><h3>Structures inspected</h3><esim-map field="obs_structures"></esim-map></div>
+</div>
+<p class="nb-note">The second share stays near one half whatever the setting, which is the share of inspected structures that were destroyed. Nothing the model holds tells a house that burned from the one beside it that did not.</p>
+</section>
+
+<section title="Wind and dryness">
+<p>The wind and the dryness of dead fuel drive the spread. Both are read from weather records and are the same in every variant of the scenario unless the variant says otherwise.</p>
+<div class="nb-cols">
+  <esim-chart series="fire.wind_m_s" title="wind speed, metres a second"></esim-chart>
+  <esim-chart series="fire.wind_from_deg" title="direction the wind blows from, degrees"></esim-chart>
+  <esim-chart series="fire.dead_moisture_pct" title="moisture of dead fuel, percent"></esim-chart>
+</div>
+</section>
+
+<section title="How far to trust it">
+<ul>
+    <li>Every constant of the fire engine is a guess. One of them, the multiplier on the heat a cell needs before it catches, is the knob the variants turn.</li>
+    <li>Nobody fights the fire unless the variant says so.</li>
+    <li>The wind does not bend around the terrain, and the fire does not change the wind.</li>
+    <li>The fuel table is recalled from memory of Scott and Burgan (2005) and has not been checked against it.</li>
+    <li>The first mapped perimeter is a hand-drawn triangle.</li>
+    <li>The mapped lines carry the time they were entered, which is later than the work on the ground.</li>
+  </ul>
+<p>The <a href="/anselm/palisades-cells">project page</a> gives the account and the sources.</p>
+<h3>How the parts are connected</h3>
+<esim-wiring></esim-wiring>
+</section>
+
+<section title="Everything recorded">
+<p>Every part of the model with the panel it describes for itself: its own account of what it does and leaves out, its maps, its counters and its charts.</p>
+<esim-modules></esim-modules>
+</section>
+
+</esim-tabs>

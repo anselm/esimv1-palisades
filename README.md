@@ -2,10 +2,16 @@
 
 The Palisades fire of January 2025, modelled twice and read against the mapped record.
 
-- `palisades-2025/` runs the Rothermel spread model. It is the baseline. Shown at
+Both projects are assembled from the same separate modules: the relief, land cover, the
+hour's weather, fuel moisture, a placeholder population of animals that runs from the
+front, and the records. They differ in the fire model that reads those parts, and in what
+that model can use.
+
+- `palisades-2025/` runs Rothermel's spread model. It is the baseline. Shown at
   [/anselm/palisades-2025](https://esimv1.exe.xyz/anselm/palisades-2025).
-- `palisades-cells/` runs esimv1's own fire engine: a heat budget on one-arcsecond cells
-  with buildings, roads, hourly wind, spotting and suppression. Shown at
+- `palisades-cells/` runs esimv1's own fire model, a heat budget on one-arcsecond cells
+  with spotting. It also reads roads and every building as a body, from two more modules,
+  and can be fought by a firefighting module. Shown at
   [/anselm/palisades-cells](https://esimv1.exe.xyz/anselm/palisades-cells).
 - `data/events/palisades-2025/` is the record both are read against: mapped perimeters,
   satellite detections, the incident's lines and reports. Its README names each source.

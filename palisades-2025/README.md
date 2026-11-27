@@ -10,6 +10,31 @@ own mapping teams drew as the fire grew. Every number on this page is read from 
 above it; the prose was written on 2026-11-03 and revised on the 4th, and the runs may have
 changed since.
 
+## What the scenario is made of
+
+The fire on this page is one module among several. The relief and the land cover are each read
+once from their own source by their own module. The weather module lays each hour's wind,
+temperature and humidity on the ground, and a fuel moisture module turns that air into how dry
+the dead fuel is. Rothermel's model reads all of them and fetches nothing itself. Beside it
+stand a population of animals that runs from the front, a firefighting module that is switched
+off, and the records the run is scored against. None of these parts knows the others: each writes maps that it owns, and
+the others read them.
+
+```esim wiring
+```
+
+The [second Palisades project](/anselm/palisades-cells) puts our own fire model in this one's
+place and reads the same relief, land cover, weather and fuel moisture modules, with roads and
+buildings added. Before 26 November 2026 this fire was a single module that loaded everything
+itself. After the separation the burned area of all four runs was the same at every hour as
+before it. One thing changed in the model: the dead fuel's moisture is now the mean over the
+window of what the moisture module writes, which on a single reanalysis point is the same
+number to six figures.
+
+The animals are a placeholder, with no species and guessed senses and speed, and no number of
+animals killed or displaced on these pages is an estimate.
+[What this is](/docs/system/overview) has the argument and its limits.
+
 ## The ground before the fire
 
 The ridge the fire came back from has burned many times, and the record of that reaches a

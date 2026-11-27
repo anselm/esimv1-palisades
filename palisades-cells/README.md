@@ -9,7 +9,7 @@ heats the cells around it, further downwind and uphill. A cell lights when the h
 taken in outweighs what its fuel and its moisture can absorb, then burns with a strength
 and for a time set by what is in it: grass for minutes, chaparral for twenty, a built-up
 cell for an hour and more. In strong wind a burning cell throws embers that land downwind
-and may start a spot fire. Roads and the sea carry nothing. Nobody fights it.
+and may start a spot fire. Roads and the sea carry nothing. Nobody fights it, except in the one variant below where the incident's counted crews do.
 
 Every constant in it is a guess and says so on the run pages. One number, a multiplier on
 all the ignition thresholds, is varied across the runs below so the model can be read
@@ -22,6 +22,31 @@ The fire itself, as the record tells it, is set out on the first project's page
 burn, the first hour at 47 miles an hour sustained, the reported acreages, the sparse maps, the
 lines and the resource counts, and the first day on which nothing worked. The runs on this page
 are read against the same record.
+
+## What the scenario is made of
+
+The fire on this page is one module of about ten. The relief, the land cover, the major roads
+and the buildings are each read once from their own source by their own module. The weather
+module lays each hour's wind, temperature and humidity on the ground, and a fuel moisture
+module turns that air into how dry the dead fuel is. The fire reads all of them and fetches
+nothing itself. Beside it stand a firefighting module, a population of animals that runs from
+the front, and the records the run is scored against. None of these parts knows the others:
+each writes maps or tables that it owns, and the others read them.
+
+```esim wiring
+```
+
+The reason for building it this way is that the parts can be exchanged. The [first Palisades
+project](/anselm/palisades-2025) runs Rothermel's model on the same relief, land cover, weather
+and fuel moisture modules. [Fort McMurray](/anselm/fortmcmurray-2016) uses the parts on this
+page with the buildings and the weather pointed at other sources. Before 26 November 2026 the
+fire was a single module that loaded all of this itself; every fire series of the twenty runs
+below was the same after the separation as before it.
+
+The animals are a placeholder, with no species and guessed senses and speed. They are there to
+show that a part can react to the fire without the fire being changed, and no number of animals
+killed or displaced on these pages is an estimate. Parts see each other once an hour of
+simulated time. [What this is](/docs/system/overview) has the argument and its limits.
 
 ## What the runs say
 

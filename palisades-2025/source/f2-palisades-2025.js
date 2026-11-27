@@ -18,15 +18,28 @@ const run = {
   notes: "The Palisades fire's first four days under reanalysis wind, unsuppressed; scored against NIFC's daily perimeters. Fuel parameters recalled from Scott and Burgan 2005 and not yet checked; the reanalysis under-reads Santa Ana gusts.",
 };
 
+// The parts of the ground and the air, each a module of its own, the same ones the cell engine
+// reads in F3. They stand before the fire because it takes the ground from them when the run starts.
+const ground = { kind: "ground.terrain", params: { place } };
+const cover = { kind: "ground.cover", params: { place } };
+// the hour's wind, temperature and humidity from the ERA5 archive: one 25 km point for the whole window
+const weather = {
+  kind: "weather.surface",
+  params: { place, source: "era5", start: "2025-01-06T00:00:00Z", end: "2025-01-14T00:00:00Z" },
+};
+const moisture = { kind: "fuel.moisture", params: {} };
+
+// Animals on the wildland, a placeholder population that runs from the front.
+const animals = { kind: "fauna.flee", params: { density_km2: 20 } };
+
 const fire = {
   kind: "fire.rothermel",
   params: {
     place,
+    inputs: "world",
     ignition_time: "2025-01-07T18:30:00Z",
     ignition_lat: 34.0723,
     ignition_lon: -118.5451,
-    wind_start: "2025-01-06",
-    wind_end: "2025-01-14",
   },
 };
 
@@ -90,4 +103,4 @@ const suppression = {
 
 // What the scenario is made of, in order. The order is the order of sections on the run page,
 // and it settles which of two modules hears an event first when their priorities are equal.
-export { run, fire, obs, seen, structures, record, suppression, audit };
+export { run, ground, cover, weather, moisture, fire, animals, obs, seen, structures, record, suppression, audit };

@@ -120,8 +120,8 @@ const suppression = {
   },
 };
 
-// Animals on the wildland, a placeholder population, leaving ground the fire reaches.
-const animals = { kind: "fauna.flee", params: { density_km2: 20, mortality: 0.1 } };
+// Animals on the wildland, a placeholder population that runs from the front.
+const animals = { kind: "fauna.flee", params: { density_km2: 20 } };
 
 // What the scenario is made of, in order. The order is the order of sections on the run page,
 // and it settles which of two modules hears an event first when their priorities are equal.

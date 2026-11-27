@@ -13,12 +13,36 @@
       }
     },
     {
-      "id": "fire",
-      "kind": "fire.rothermel",
+      "id": "ground",
+      "kind": "ground.terrain",
       "params": {
-        "ignition_lat": 34.0723,
-        "ignition_lon": -118.5451,
-        "ignition_time": "2025-01-07T18:30:00Z",
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "cover",
+      "kind": "ground.cover",
+      "params": {
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "weather",
+      "kind": "weather.surface",
+      "params": {
+        "end": "2025-01-14T00:00:00Z",
         "place": {
           "lat_n": 34.16,
           "lat_s": 34,
@@ -26,8 +50,36 @@
           "lon_w": -118.72,
           "res_arcsec": 1
         },
-        "wind_end": "2025-01-14",
-        "wind_start": "2025-01-06"
+        "source": "era5",
+        "start": "2025-01-06T00:00:00Z"
+      }
+    },
+    {
+      "id": "moisture",
+      "kind": "fuel.moisture"
+    },
+    {
+      "id": "fire",
+      "kind": "fire.rothermel",
+      "params": {
+        "ignition_lat": 34.0723,
+        "ignition_lon": -118.5451,
+        "ignition_time": "2025-01-07T18:30:00Z",
+        "inputs": "world",
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "animals",
+      "kind": "fauna.flee",
+      "params": {
+        "density_km2": 20
       }
     },
     {
@@ -127,8 +179,8 @@
     }
   ],
   "from": {
-    "entry": "manifests/f2-palisades-2025.js",
-    "hash": "sha256:68ec30188a02ff35a1ba978791bceef879c5665efeaa474842fd5e0d481ad838",
+    "entry": "scenarios/esimv1-palisades/manifests/f2-palisades-2025.js",
+    "hash": "sha256:a3ca1436fa4f3e235bb5a59806b19d19abdecd4ac48c507e4242cf164ce86107",
     "language": "javascript"
   },
   "manifest": "manifest/1"

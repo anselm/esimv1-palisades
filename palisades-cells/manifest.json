@@ -109,8 +109,7 @@
       "id": "animals",
       "kind": "fauna.flee",
       "params": {
-        "density_km2": 20,
-        "mortality": 0.1
+        "density_km2": 20
       }
     },
     {
@@ -213,7 +212,7 @@
   ],
   "from": {
     "entry": "scenarios/esimv1-palisades/manifests/f3-palisades-cells.js",
-    "hash": "sha256:31e64e124625ff1caeca0891db1e198e78c33143b971c3d7bfdb5e3388c99614",
+    "hash": "sha256:5168d30a84228e286279206c28f50f4e851be98eeda8de0e92b1558749703f37",
     "language": "javascript"
   },
   "manifest": "manifest/1"

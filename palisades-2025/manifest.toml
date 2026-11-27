@@ -8,15 +8,8 @@ snapshot_every = "10d"
 notes = "The Palisades fire's first four days under reanalysis wind, unsuppressed; scored against NIFC's daily perimeters. Fuel parameters recalled from Scott and Burgan 2005 and not yet checked; the reanalysis under-reads Santa Ana gusts."
 
 [[module]]
-name = "fire"
-kind = "fire.rothermel"
-
-[module.params]
-ignition_lat = 34.0723
-ignition_lon = -118.5451
-ignition_time = "2025-01-07T18:30:00Z"
-wind_end = "2025-01-14"
-wind_start = "2025-01-06"
+name = "ground"
+kind = "ground.terrain"
 
 [module.params.place]
 lat_n = 34.16
@@ -24,6 +17,63 @@ lat_s = 34
 lon_e = -118.46
 lon_w = -118.72
 res_arcsec = 1
+
+[[module]]
+name = "cover"
+kind = "ground.cover"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "weather"
+kind = "weather.surface"
+
+[module.params]
+end = "2025-01-14T00:00:00Z"
+source = "era5"
+start = "2025-01-06T00:00:00Z"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "moisture"
+kind = "fuel.moisture"
+
+[module.params]
+
+[[module]]
+name = "fire"
+kind = "fire.rothermel"
+
+[module.params]
+ignition_lat = 34.0723
+ignition_lon = -118.5451
+ignition_time = "2025-01-07T18:30:00Z"
+inputs = "world"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "animals"
+kind = "fauna.flee"
+
+[module.params]
+density_km2 = 20
 
 [[module]]
 name = "obs"

@@ -20,7 +20,8 @@ stand a population of animals that runs from the front, a firefighting module th
 off, and the records the run is scored against. None of these parts knows the others: each writes maps that it owns, and
 the others read them.
 
-```esim wiring
+```esim
+wiring
 ```
 
 The [second Palisades project](/anselm/palisades-cells) puts our own fire model in this one's

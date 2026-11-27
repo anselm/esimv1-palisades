@@ -6,11 +6,87 @@
         "close_every": "1d",
         "end": "2025-01-12T00:00:00Z",
         "name": "f3-palisades-cells",
-        "notes": "Our own engine on the Palisades fire: heat budget on 30 m cells, buildings and roads from the county and OpenStreetMap, HRRR 3 km wind; unsuppressed; constants guessed.",
+        "notes": "The Palisades fire with terrain, weather, fuel moisture, fire and animals as separate modules that meet in shared fields; unsuppressed; constants guessed.",
         "seed": 1,
         "snapshot_every": "10d",
         "start": "2025-01-07T18:00:00Z"
       }
+    },
+    {
+      "id": "ground",
+      "kind": "ground.terrain",
+      "params": {
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "cover",
+      "kind": "ground.cover",
+      "params": {
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "roads",
+      "kind": "roads.major",
+      "params": {
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        }
+      }
+    },
+    {
+      "id": "buildings",
+      "kind": "built.footprints",
+      "params": {
+        "key": "lacounty-lariac/2025-palisades",
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        },
+        "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/2025_WildFire_LARIAC_BUILDINGS_100M_Plus_DINS_MaxMin_DAMAGE_NEW/FeatureServer/0",
+        "source": "service",
+        "where": "Incident_Name LIKE '%Palisades%'"
+      }
+    },
+    {
+      "id": "weather",
+      "kind": "weather.surface",
+      "params": {
+        "end": "2025-01-12T00:00:00Z",
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        },
+        "source": "hrrr",
+        "start": "2025-01-07T18:00:00Z"
+      }
+    },
+    {
+      "id": "moisture",
+      "kind": "fuel.moisture"
     },
     {
       "id": "fire",
@@ -19,6 +95,7 @@
         "ignition_lat": 34.0723,
         "ignition_lon": -118.5451,
         "ignition_time": "2025-01-07T18:30:00Z",
+        "inputs": "world",
         "place": {
           "lat_n": 34.16,
           "lat_s": 34,
@@ -26,6 +103,31 @@
           "lon_w": -118.72,
           "res_arcsec": 1
         }
+      }
+    },
+    {
+      "id": "animals",
+      "kind": "fauna.flee",
+      "params": {
+        "density_km2": 20,
+        "mortality": 0.1
+      }
+    },
+    {
+      "id": "suppression",
+      "kind": "fire.suppression",
+      "params": {
+        "line_width_m": 30,
+        "mode": "off",
+        "place": {
+          "lat_n": 34.16,
+          "lat_s": 34,
+          "lon_e": -118.46,
+          "lon_w": -118.72,
+          "res_arcsec": 1
+        },
+        "reports": "palisades-2025/calfire/updates.csv",
+        "reports_tz_offset_h": -8
       }
     },
     {
@@ -98,23 +200,6 @@
       }
     },
     {
-      "id": "suppression",
-      "kind": "fire.suppression",
-      "params": {
-        "line_width_m": 30,
-        "mode": "off",
-        "place": {
-          "lat_n": 34.16,
-          "lat_s": 34,
-          "lon_e": -118.46,
-          "lon_w": -118.72,
-          "res_arcsec": 1
-        },
-        "reports": "palisades-2025/calfire/updates.csv",
-        "reports_tz_offset_h": -8
-      }
-    },
-    {
       "audit": {
         "scores": [
           [
@@ -127,8 +212,8 @@
     }
   ],
   "from": {
-    "entry": "manifests/f3-palisades-cells.js",
-    "hash": "sha256:8bdc323472941399ee5c6936ebfa19825fca05af568ea77cdda7b2164191ba09",
+    "entry": "scenarios/esimv1-palisades/manifests/f3-palisades-cells.js",
+    "hash": "sha256:31e64e124625ff1caeca0891db1e198e78c33143b971c3d7bfdb5e3388c99614",
     "language": "javascript"
   },
   "manifest": "manifest/1"

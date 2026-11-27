@@ -5,7 +5,79 @@ end = "2025-01-12T00:00:00Z"
 seed = 1
 close_every = "1d"
 snapshot_every = "10d"
-notes = "Our own engine on the Palisades fire: heat budget on 30 m cells, buildings and roads from the county and OpenStreetMap, HRRR 3 km wind; unsuppressed; constants guessed."
+notes = "The Palisades fire with terrain, weather, fuel moisture, fire and animals as separate modules that meet in shared fields; unsuppressed; constants guessed."
+
+[[module]]
+name = "ground"
+kind = "ground.terrain"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "cover"
+kind = "ground.cover"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "roads"
+kind = "roads.major"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "buildings"
+kind = "built.footprints"
+
+[module.params]
+key = "lacounty-lariac/2025-palisades"
+service = "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/2025_WildFire_LARIAC_BUILDINGS_100M_Plus_DINS_MaxMin_DAMAGE_NEW/FeatureServer/0"
+source = "service"
+where = "Incident_Name LIKE '%Palisades%'"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "weather"
+kind = "weather.surface"
+
+[module.params]
+end = "2025-01-12T00:00:00Z"
+source = "hrrr"
+start = "2025-01-07T18:00:00Z"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "moisture"
+kind = "fuel.moisture"
+
+[module.params]
 
 [[module]]
 name = "fire"
@@ -15,6 +87,32 @@ kind = "fire.cells"
 ignition_lat = 34.0723
 ignition_lon = -118.5451
 ignition_time = "2025-01-07T18:30:00Z"
+inputs = "world"
+
+[module.params.place]
+lat_n = 34.16
+lat_s = 34
+lon_e = -118.46
+lon_w = -118.72
+res_arcsec = 1
+
+[[module]]
+name = "animals"
+kind = "fauna.flee"
+
+[module.params]
+density_km2 = 20
+mortality = 0.1
+
+[[module]]
+name = "suppression"
+kind = "fire.suppression"
+
+[module.params]
+line_width_m = 30
+mode = "off"
+reports = "palisades-2025/calfire/updates.csv"
+reports_tz_offset_h = -8
 
 [module.params.place]
 lat_n = 34.16
@@ -84,23 +182,6 @@ files = [
     "palisades-2025/nifc/palisades-event-lines.geojson",
 ]
 time_field = "CreateDate"
-
-[module.params.place]
-lat_n = 34.16
-lat_s = 34
-lon_e = -118.46
-lon_w = -118.72
-res_arcsec = 1
-
-[[module]]
-name = "suppression"
-kind = "fire.suppression"
-
-[module.params]
-line_width_m = 30
-mode = "off"
-reports = "palisades-2025/calfire/updates.csv"
-reports_tz_offset_h = -8
 
 [module.params.place]
 lat_n = 34.16

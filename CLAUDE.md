@@ -20,5 +20,5 @@ The Palisades fire of January 2025 as two esimv1 scenarios that share one record
   (`buildings/lacounty-palisades-2025/pacific-palisades/2026-11-28`, 13,292 with the inspectors' damage). That
   product is listed in the public store without its bytes, because the county's terms were not read; on canada1 it
   is in the hub's `dataservice/store`, and elsewhere `esim-data build --only lacounty-palisades` makes it. The four
-  Rothermel runs kept their digests. All twenty cell-fire runs moved by a few percent, because the roads are a
+  Rothermel runs kept their digests. All twenty cell-fire runs moved (burned area by a few percent, small counts such as animals caught by much more), because the roads are a
   newer map; the page says so. The record folder under `data/events/palisades-2025/` is unchanged.

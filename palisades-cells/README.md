@@ -67,7 +67,7 @@ The first is a cliff. With a far reach (heat felt three cells away) the fire eit
 window in hours or, past a threshold, cannot light the cell next to it at all; there is no
 setting in between that walks at the record's pace. With a near reach, heat felt only by
 the next cell, the first day comes into range: at four times the threshold the engine has
-burned about 4,100 acres at twelve hours where the triangle says 2,920, and about 15,300 at
+burned about 4,000 acres at twelve hours where the triangle says 2,920, and about 15,000 at
 27 hours where the infrared map says 15,800. Then it keeps going, because nothing in it
 stops, and by the fourth day it has twice the record.
 
@@ -109,7 +109,7 @@ vectors, the head at one plus their sum, every other direction on Anderson's ell
 so the back burns at the ellipse's backing rate and not a division; and the cell's heat decays only
 while no heat arrives, because a budget that always decays has a floor under which a slow flank never
 lights, which was every cliff this engine had met. `vector-5` is the first run on either engine with
-the first day right in both pace and shape: 16,525 acres at the first infrared perimeter against
+the first day right in both pace and shape: 16,220 acres at the first infrared perimeter against
 15,824, overlap 0.79, a lobe along the coast to Malibu and up to Topanga. Its second day is wrong, and
 wrong in a way no constant in the engine reaches: the model fills the mountains north to Calabasas by
 the second night where the record grew by a few thousand acres, and raising thresholds, cutting the
@@ -124,6 +124,16 @@ cliffs. This engine felt it less than the spread formula does, because it stretc
 reach by the slope rather than its square, but the first day's pace was partly riding those
 slopes. The runs on this page are on the corrected ground; the devlog entry *The holes in
 the ground* has the account.
+
+On 28 November 2026 the roads and the buildings under these runs changed source. Both now come
+from the [data warehouse](https://data.earthlight.cloud/): the roads are OpenStreetMap's as the map
+stood on 27 November, and the buildings are the same county layer, read on the 28th. Until then the
+engine held its own copy of each, the roads fetched on 3 November from a mirror of OpenStreetMap
+whose map may have been months old. The new roads class some stretches differently (fewer are
+motorway or trunk, more are primary), a road's class sets how wide a break it makes, and every run
+on this page moved. The findings above did not: the numbers in this section are from the new runs
+and differ from the old ones by a few percent. The two search results in the next section were
+computed before the change and have not been searched again.
 
 ## What the satellites saw, and what a fit can and cannot do
 
@@ -198,10 +208,10 @@ unchanged).
 | `vector-5`, nobody fights the fire | 0.55 | 0.82 |
 | `vector-5-crews`, fought | 0.22 | 0.17 |
 
-The fought fire ends at 19,000 acres. The last mapped perimeter in the run's window has
+The fought fire ends at 19,500 acres. The last mapped perimeter in the run's window has
 23,300, and from the first infrared map on the overlap of the two shapes is between 0.7
 and 0.8. The unfought
-fire ends at 64,600 acres.
+fire ends at 64,900 acres.
 
 The fought fire has the right size and a wrong course. In the model the whole edge is held
 by 45 hours after the ignition, 18 hours after the first resources are counted, and nothing

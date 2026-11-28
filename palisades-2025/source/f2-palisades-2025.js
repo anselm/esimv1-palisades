@@ -8,6 +8,10 @@
 // where: the window every module here works on, and its resolution
 const place = { lat_s: 34.0, lat_n: 34.16, lon_w: -118.72, lon_e: -118.46, res_arcsec: 1 };
 
+// what: the products of the data warehouse this scenario reads (https://data.earthlight.cloud), each named by
+// its address there. A product never changes once made, so these lines fix the bytes a run reads.
+const data = { roads: "roads/osm/pacific-palisades/2026-11-27", names: "names/osm/pacific-palisades/2026-11-28" };
+
 const run = {
   name: "f2-palisades-2025",
   start: "2025-01-07T18:00:00Z",
@@ -36,6 +40,7 @@ const fire = {
   kind: "fire.rothermel",
   params: {
     place,
+    data,
     inputs: "world",
     ignition_time: "2025-01-07T18:30:00Z",
     ignition_lat: 34.0723,

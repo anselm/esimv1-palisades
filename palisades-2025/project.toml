@@ -1,6 +1,7 @@
 # A project: who asked for what, in their words, and the manifest beside it.
 area = "anselm"
 name = "palisades-2025"
+engine = "0.4.0"
 title = "The Palisades fire, January 2025"
 featured = false
 cover = "cover.png"

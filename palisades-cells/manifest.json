@@ -42,6 +42,11 @@
       "id": "roads",
       "kind": "roads.major",
       "params": {
+        "data": {
+          "buildings": "buildings/lacounty-palisades-2025/pacific-palisades/2026-11-28",
+          "names": "names/osm/pacific-palisades/2026-11-28",
+          "roads": "roads/osm/pacific-palisades/2026-11-27"
+        },
         "place": {
           "lat_n": 34.16,
           "lat_s": 34,
@@ -55,17 +60,18 @@
       "id": "buildings",
       "kind": "built.footprints",
       "params": {
-        "key": "lacounty-lariac/2025-palisades",
+        "data": {
+          "buildings": "buildings/lacounty-palisades-2025/pacific-palisades/2026-11-28",
+          "names": "names/osm/pacific-palisades/2026-11-28",
+          "roads": "roads/osm/pacific-palisades/2026-11-27"
+        },
         "place": {
           "lat_n": 34.16,
           "lat_s": 34,
           "lon_e": -118.46,
           "lon_w": -118.72,
           "res_arcsec": 1
-        },
-        "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/2025_WildFire_LARIAC_BUILDINGS_100M_Plus_DINS_MaxMin_DAMAGE_NEW/FeatureServer/0",
-        "source": "service",
-        "where": "Incident_Name LIKE '%Palisades%'"
+        }
       }
     },
     {
@@ -92,6 +98,11 @@
       "id": "fire",
       "kind": "fire.cells",
       "params": {
+        "data": {
+          "buildings": "buildings/lacounty-palisades-2025/pacific-palisades/2026-11-28",
+          "names": "names/osm/pacific-palisades/2026-11-28",
+          "roads": "roads/osm/pacific-palisades/2026-11-27"
+        },
         "ignition_lat": 34.0723,
         "ignition_lon": -118.5451,
         "ignition_time": "2025-01-07T18:30:00Z",
@@ -212,7 +223,7 @@
   ],
   "from": {
     "entry": "scenarios/esimv1-palisades/manifests/f3-palisades-cells.js",
-    "hash": "sha256:5168d30a84228e286279206c28f50f4e851be98eeda8de0e92b1558749703f37",
+    "hash": "sha256:7f3086007960744b52469b641334d7ea01a073f8b0945944fe5f8ee089879c13",
     "language": "javascript"
   },
   "manifest": "manifest/1"

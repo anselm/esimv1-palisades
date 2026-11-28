@@ -62,6 +62,10 @@
       "id": "fire",
       "kind": "fire.rothermel",
       "params": {
+        "data": {
+          "names": "names/osm/pacific-palisades/2026-11-28",
+          "roads": "roads/osm/pacific-palisades/2026-11-27"
+        },
         "ignition_lat": 34.0723,
         "ignition_lon": -118.5451,
         "ignition_time": "2025-01-07T18:30:00Z",
@@ -180,7 +184,7 @@
   ],
   "from": {
     "entry": "scenarios/esimv1-palisades/manifests/f2-palisades-2025.js",
-    "hash": "sha256:a3ca1436fa4f3e235bb5a59806b19d19abdecd4ac48c507e4242cf164ce86107",
+    "hash": "sha256:08de386b80cebc77eb8bc34fb393dcce0ac24090b70cbca286468a5ea7b1c2dc",
     "language": "javascript"
   },
   "manifest": "manifest/1"

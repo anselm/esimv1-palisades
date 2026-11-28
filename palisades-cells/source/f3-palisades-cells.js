@@ -8,6 +8,16 @@
 // where: the window every module here works on, and its resolution
 const place = { lat_s: 34.0, lat_n: 34.16, lon_w: -118.72, lon_e: -118.46, res_arcsec: 1 };
 
+// what: the products of the data warehouse this scenario reads (https://data.earthlight.cloud), each named by
+// its address there. A product never changes once made, so these lines fix the bytes a run reads. The county's
+// footprints are listed in the public store without their bytes; `esim-data build --only lacounty-palisades`
+// makes them from the county's own service, into a store ESIM_DATA_STORES names.
+const data = {
+  roads: "roads/osm/pacific-palisades/2026-11-27",
+  names: "names/osm/pacific-palisades/2026-11-28",
+  buildings: "buildings/lacounty-palisades-2025/pacific-palisades/2026-11-28",
+};
+
 const run = {
   name: "f3-palisades-cells",
   start: "2025-01-07T18:00:00Z",
@@ -24,17 +34,8 @@ const ground = { kind: "ground.terrain", params: { place } };
 // What covers each cell, the major roads, and every building: its outline, height and what the
 // inspectors found. The buildings are a shared table of things, not a map.
 const cover = { kind: "ground.cover", params: { place } };
-const roads = { kind: "roads.major", params: { place } };
-const buildings = {
-  kind: "built.footprints",
-  params: {
-    place,
-    source: "service",
-    service: "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/2025_WildFire_LARIAC_BUILDINGS_100M_Plus_DINS_MaxMin_DAMAGE_NEW/FeatureServer/0",
-    where: "Incident_Name LIKE '%Palisades%'",
-    key: "lacounty-lariac/2025-palisades",
-  },
-};
+const roads = { kind: "roads.major", params: { place, data } };
+const buildings = { kind: "built.footprints", params: { place, data } };
 
 // The air at the ground each hour, from NOAA's 3 km analysis.
 const weather = {
@@ -49,6 +50,7 @@ const fire = {
   kind: "fire.cells",
   params: {
     place,
+    data,
     inputs: "world",
     ignition_time: "2025-01-07T18:30:00Z",
     ignition_lat: 34.0723,

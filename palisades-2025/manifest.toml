@@ -61,6 +61,10 @@ ignition_lon = -118.5451
 ignition_time = "2025-01-07T18:30:00Z"
 inputs = "world"
 
+[module.params.data]
+names = "names/osm/pacific-palisades/2026-11-28"
+roads = "roads/osm/pacific-palisades/2026-11-27"
+
 [module.params.place]
 lat_n = 34.16
 lat_s = 34

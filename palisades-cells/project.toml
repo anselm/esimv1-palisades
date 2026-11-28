@@ -1,6 +1,7 @@
 # A project: who asked for what, in their words, and the manifest beside it.
 area = "anselm"
 name = "palisades-cells"
+engine = "0.4.0"
 title = "The Palisades fire, cell by cell"
 featured = true
 cover = "cover.png"
